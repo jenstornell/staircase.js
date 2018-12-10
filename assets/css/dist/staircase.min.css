@@ -1,0 +1,16 @@
+* {
+  padding: 0;
+  margin: 0; }
+
+stair-case {
+  background: #eee;
+  display: block;
+  font-family: Arial, Helvetica, sans-serif; }
+  stair-case ul {
+    margin-left: 1rem;
+    list-style: none; }
+    stair-case ul li {
+      cursor: default;
+      user-select: none; }
+      stair-case ul li[data-staircase-active] {
+        background: #ccc; }
