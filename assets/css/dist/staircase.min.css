@@ -2,15 +2,67 @@
   padding: 0;
   margin: 0; }
 
+body {
+  background: #eee; }
+
+@-webkit-keyframes rotation {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(359deg); } }
+
 stair-case {
-  background: #eee;
+  background: #fff;
   display: block;
-  font-family: Arial, Helvetica, sans-serif; }
+  font-family: Arial, Helvetica, sans-serif;
+  width: 300px;
+  padding: 1rem 0;
+  margin: 1rem; }
   stair-case ul {
     margin-left: 1rem;
     list-style: none; }
     stair-case ul li {
       cursor: default;
-      user-select: none; }
-      stair-case ul li[data-staircase-active] {
-        background: #ccc; }
+      user-select: none;
+      font-size: .9rem;
+      margin-top: -.2rem;
+      margin-bottom: -.2rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      color: #222; }
+      stair-case ul li.sc-active {
+        /*&[data-sc-type="folder"] &.sc-loading > .sc-current > .sc-icon {
+                }*/ }
+        stair-case ul li.sc-active > .sc-current > .sc-name,
+        stair-case ul li.sc-active > .sc-current > .sc-name:hover {
+          background: #0367d8;
+          color: #fff; }
+      stair-case ul li .sc-current {
+        display: flex;
+        align-items: center; }
+      stair-case ul li .sc-name,
+      stair-case ul li .sc-icon {
+        padding: .2rem .2rem; }
+      stair-case ul li .sc-icon {
+        background-size: 18px 18px;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 24px;
+        height: 24px; }
+      stair-case ul li .sc-name,
+      stair-case ul li .sc-icon {
+        border-radius: .2rem; }
+        stair-case ul li .sc-name:hover,
+        stair-case ul li .sc-icon:hover {
+          background-color: #cde4fe; }
+      stair-case ul li[data-sc-type="folder"] .sc-icon {
+        background-image: url("../../images/folder-solid.svg"); }
+      stair-case ul li[data-sc-type="folder"].sc-loading > .sc-current > .sc-icon {
+        background-image: url("../../images/sync-solid.svg");
+        animation: rotation 2s infinite linear; }
+        stair-case ul li[data-sc-type="folder"].sc-loading > .sc-current > .sc-icon:hover {
+          background-color: transparent; }
+      stair-case ul li[data-sc-type="file"] .sc-icon {
+        background-image: url("../../images/file-regular.svg"); }
+  stair-case > ul {
+    margin-left: 0; }

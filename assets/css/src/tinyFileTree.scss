@@ -3,21 +3,108 @@
     margin: 0;
 }
 
-stair-case {
+body {
     background: #eee;
+}
+
+@-webkit-keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+stair-case {
+    background: #fff;
     display: block;
     font-family: Arial, Helvetica, sans-serif;
+    width: 300px;
+    padding: 1rem 0;
+    margin: 1rem;
 
     ul {
         margin-left: 1rem;
         list-style: none;
+
         li {
             cursor: default;
             user-select: none;
+            font-size: .9rem;
+            margin-top: -.2rem;
+            margin-bottom: -.2rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            color: #222;
 
-            &[data-staircase-active] {
-                background: #ccc;
+            &.sc-active {
+                > .sc-current {
+                    > .sc-name,
+                    > .sc-name:hover {
+                        background: hsl(212, 97%, 43%);
+                        color: #fff;
+                    }
+                }
+
+                /*&[data-sc-type="folder"] &.sc-loading > .sc-current > .sc-icon {
+                }*/
+            }
+
+            .sc-current {
+                display: flex;
+                align-items: center;
+            }
+
+            .sc-name,
+            .sc-icon {
+                padding: .2rem .2rem;
+            }
+
+            .sc-icon {
+                background-size: 18px 18px;
+                background-position: center;
+                background-repeat: no-repeat;
+                width: 24px;
+                height: 24px;
+            }
+
+            .sc-name,
+            .sc-icon {
+                border-radius: .2rem;
+
+                &:hover {
+                    background-color: hsl(212, 97%, 90%);
+                }
+            }
+
+            &[data-sc-type="folder"] {
+                .sc-icon {
+                    background-image: url('../../images/folder-solid.svg');
+                }
+
+                &.sc-loading > .sc-current > .sc-icon {
+                    background-image: url('../../images/sync-solid.svg');
+                    animation: rotation 2s infinite linear;
+
+                    &:hover {
+                        background-color: transparent;
+                    }
+                }
+            }
+            &[data-sc-type="file"] {
+                .sc-icon {
+                    background-image: url('../../images/file-regular.svg');
+                }
+
+                &[data-sc-name$=".txt"] {
+                    //background: red;
+                }
             }
         }
+    }
+
+    > ul {
+        margin-left: 0;
     }
 }
