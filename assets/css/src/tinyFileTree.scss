@@ -52,8 +52,18 @@ stair-case {
             }
 
             .sc-current {
-                display: flex;
                 align-items: center;
+                display: flex;
+            }
+
+            .sc-children {
+                display: none;
+            }
+
+            &[data-sc-state="open"] {
+                .sc-children {
+                    display: block;
+                }
             }
 
             .sc-name,
@@ -81,6 +91,10 @@ stair-case {
             &[data-sc-type="folder"] {
                 .sc-icon {
                     background-image: url('../../images/folder-solid.svg');
+                }
+
+                &[data-sc-state="open"] > .sc-current > .sc-icon {
+                    background-image: url('../../images/folder-open-solid.svg');
                 }
 
                 &.sc-loading > .sc-current > .sc-icon {

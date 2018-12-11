@@ -18,6 +18,14 @@ switch($post['id']) {
             'subfile2.png'
         ];
         break;
+    case 'my_folder/subfolder1':
+        $data = [
+            'one.txt',
+            'two/',
+            'three/',
+            'file.png'
+        ];
+        break;
 }
 
 usleep(250000);

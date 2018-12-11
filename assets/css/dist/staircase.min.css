@@ -38,8 +38,12 @@ stair-case {
           background: #0367d8;
           color: #fff; }
       stair-case ul li .sc-current {
-        display: flex;
-        align-items: center; }
+        align-items: center;
+        display: flex; }
+      stair-case ul li .sc-children {
+        display: none; }
+      stair-case ul li[data-sc-state="open"] .sc-children {
+        display: block; }
       stair-case ul li .sc-name,
       stair-case ul li .sc-icon {
         padding: .2rem .2rem; }
@@ -57,6 +61,8 @@ stair-case {
           background-color: #cde4fe; }
       stair-case ul li[data-sc-type="folder"] .sc-icon {
         background-image: url("../../images/folder-solid.svg"); }
+      stair-case ul li[data-sc-type="folder"][data-sc-state="open"] > .sc-current > .sc-icon {
+        background-image: url("../../images/folder-open-solid.svg"); }
       stair-case ul li[data-sc-type="folder"].sc-loading > .sc-current > .sc-icon {
         background-image: url("../../images/sync-solid.svg");
         animation: rotation 2s infinite linear; }

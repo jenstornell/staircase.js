@@ -8,6 +8,9 @@ var staircase = (function () {
 
         document.addEventListener("DOMContentLoaded", function(event) {
             document.querySelector('stair-case').dataset.scName = '/';
+
+            //fn.eventClickFolder(document.querySelector('stair-case'));
+
             fn.ajax('/');
         });
     };
@@ -26,12 +29,9 @@ var staircase = (function () {
         var data = {};
         data.id = id;
 
-        console.log(id);
-
         var json = JSON.stringify(data);
         let current = document.querySelector('[data-sc-name="' + id + '"]');
         current.classList.add('sc-loading');
-        //console.log(current);
 
         fetch(o.ajaxPath, {
             method: 'POST',
@@ -45,21 +45,21 @@ var staircase = (function () {
         })
         .then(function(text) {
             var array = JSON.parse(text);
-            var element = fn.createList(array);
+            var element = fn.createList(array, id);
             let current = document.querySelector('[data-sc-name="' + id + '"]');
             
             current.appendChild(element);
             current.dataset.children = '';
             current.classList.remove('sc-loading');
-            //current.dataset.state = 'open';
+            current.dataset.scState = 'open';
 
-           fn.eventClickName();
-           fn.eventClickFolder();
+            fn.eventClickName();
+            fn.eventClickFolder(current);
         });
     };
 
     // Create list
-    fn.createList = function(array) {
+    fn.createList = function(array, parentName) {
         var ul = document.createElement('ul'); 
         ul.classList.add('sc-children');
 
@@ -67,18 +67,10 @@ var staircase = (function () {
 
         data.folders.forEach(function(item) {
             let li = fn.createLi(item);
-
-            if(item.parentNode) {
-                let parent = item.parentNode.closest('[data-sc-name]');
-                if(parent) {
-                    //.dataset.scName;
-                }
-            }
-
-            console.log(parentName);
+            let id = fn.trimSlashes(parentName + '/' + item);
             
             li.dataset.scType = 'folder';
-            li.dataset.scName = item;
+            li.dataset.scName = id;
 
             ul.appendChild(li);
         });
@@ -161,25 +153,27 @@ var staircase = (function () {
         });
     };
 
-
-    fn.eventClickFolder = function() {
-        var elements = document.querySelectorAll('stair-case li[data-sc-type="folder"] .sc-icon');
+    // Event click folder 
+    fn.eventClickFolder = function(current) {
+        var elements = current.querySelectorAll('li[data-sc-type="folder"]:not([data-children]) .sc-icon');
+        
         elements.forEach(function(element) {
             element.addEventListener('click', function(e) {
-                let el = e.currentTarget.closest('li');
-                let name = el.dataset.scName;
-                let parentName = el.parentNode.closest('[data-sc-name]').dataset.scName;
-                let id = parentName + name;
-                id = fn.trimSlashes(id);
+                var el = e.currentTarget.closest('[data-sc-name]');
 
-                fn.ajax(id);
-            });
+                if(el.dataset.children === undefined) {
+                    let name = el.dataset.scName;
+                    id = fn.trimSlashes(name);
+                    el.dataset.scState = 'open';
+                    fn.ajax(id);
+                }
+            }, true);
 
         });
     };
 
-
     fn.trimSlashes = function(str) {
+        str = str.replace(/^\/|\/$/g, '');
         return str.replace(/^\/|\/$/g, '');
     };
 
