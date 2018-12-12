@@ -90,11 +90,11 @@ stair-case {
 
             &[data-sc-type="folder"] {
                 .sc-icon {
-                    background-image: url('../../images/folder-plus-solid.svg');
+                    background-image: url('../../images/folder-solid.svg');
                 }
 
                 &[data-sc-state="open"] > .sc-current > .sc-icon {
-                    background-image: url('../../images/folder-minus-solid.svg');
+                    background-image: url('../../images/folder-open-solid.svg');
                 }
 
                 &.sc-loading > .sc-current > .sc-icon {

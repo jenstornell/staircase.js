@@ -60,9 +60,9 @@ stair-case {
         stair-case ul li .sc-icon:hover {
           background-color: #cde4fe; }
       stair-case ul li[data-sc-type="folder"] .sc-icon {
-        background-image: url("../../images/folder-plus-solid.svg"); }
+        background-image: url("../../images/folder-solid.svg"); }
       stair-case ul li[data-sc-type="folder"][data-sc-state="open"] > .sc-current > .sc-icon {
-        background-image: url("../../images/folder-minus-solid.svg"); }
+        background-image: url("../../images/folder-open-solid.svg"); }
       stair-case ul li[data-sc-type="folder"].sc-loading > .sc-current > .sc-icon {
         background-image: url("../../images/sync-solid.svg");
         animation: rotation 2s infinite linear; }

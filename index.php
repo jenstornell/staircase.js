@@ -14,8 +14,11 @@
 <script src="assets/js/src/staircase.js?t=<?= time(); ?>"></script>
 <script>
   staircase.init({
-      callback: function(el) {
-          //console.log(el);
+      callbackActive: function(args) {
+          console.log(args);
+      },
+      callbackAfterLoad: function(data) {
+        console.log(data);
       }
   });
 </script>

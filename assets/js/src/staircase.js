@@ -8,9 +8,6 @@ var staircase = (function () {
 
         document.addEventListener("DOMContentLoaded", function(event) {
             document.querySelector('stair-case').dataset.scName = '/';
-
-            //fn.eventClickFolder(document.querySelector('stair-case'));
-
             fn.ajax('/');
         });
     };
@@ -44,19 +41,41 @@ var staircase = (function () {
             return response.text();
         })
         .then(function(text) {
-            var array = JSON.parse(text);
-            var element = fn.createList(array, id);
-            let current = document.querySelector('[data-sc-name="' + id + '"]');
-            
-            current.appendChild(element);
-            current.dataset.children = '';
             current.classList.remove('sc-loading');
-            current.dataset.scState = 'open';
 
-            fn.eventClickName();
-            fn.eventClickFolder(current);
+            let args = {};
+            args.id = id;
+            args.element = current;
+
+            if(fn.isJson(text)) {
+                var array = JSON.parse(text);
+                var element = fn.createList(array, id);
+                let current = document.querySelector('[data-sc-name="' + id + '"]');
+                
+                current.appendChild(element);
+                current.dataset.children = '';
+                current.dataset.scState = 'open';
+
+                fn.eventClickName();
+                fn.eventClickFolder(current);
+                fn.eventClickToggle(current);
+
+                args.success = true;
+            } else {
+                args.success = false;
+            }
+            o.callbackAfterLoad(args);
         });
     };
+    
+    fn.isJson = function(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
 
     // Create list
     fn.createList = function(array, parentName) {
@@ -147,10 +166,24 @@ var staircase = (function () {
                 
                 fn.removeActive();
                 fn.setActive(el);
-                o.callback(data);
+                o.callbackActive(data);
             });
 
         });
+    };
+
+    fn.eventClickToggle = function(current) {
+        let el = current.querySelector(':scope > .sc-current > .sc-icon');
+        if(el) {
+            el.addEventListener('click', function(e) {
+                console.log('jens');
+                if(current.dataset.scState == 'open') {
+                    current.dataset.scState = 'close';
+                } else {
+                    current.dataset.scState = 'open';
+                }
+            });
+        }
     };
 
     // Event click folder 
@@ -164,7 +197,7 @@ var staircase = (function () {
                 if(el.dataset.children === undefined) {
                     let name = el.dataset.scName;
                     id = fn.trimSlashes(name);
-                    el.dataset.scState = 'open';
+                    //el.dataset.scState = 'open';
                     fn.ajax(id);
                 }
             }, true);
