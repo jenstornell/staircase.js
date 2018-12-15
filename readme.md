@@ -4,6 +4,8 @@
 
 Small ajax sidebar file tree browser without dependencies.
 
+![Screenshot](screenshot.gif)
+
 ## In short
 
 - Vanilla JS
