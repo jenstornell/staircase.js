@@ -176,7 +176,6 @@ var staircase = (function () {
         let el = current.querySelector(':scope > .sc-current > .sc-icon');
         if(el) {
             el.addEventListener('click', function(e) {
-                console.log('jens');
                 if(current.dataset.scState == 'open') {
                     current.dataset.scState = 'close';
                 } else {

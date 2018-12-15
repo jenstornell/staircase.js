@@ -53,9 +53,9 @@ stair-case {
         height: 24px; }
       stair-case ul li .sc-name:hover {
         background-color: #cde4fe; }
-      stair-case ul li[data-sc-type="folder"] .sc-icon {
+      stair-case ul li[data-sc-type="folder"] > .sc-current > .sc-icon {
         background-image: url("../../images/folder-solid.svg"); }
-        stair-case ul li[data-sc-type="folder"] .sc-icon:hover {
+        stair-case ul li[data-sc-type="folder"] > .sc-current > .sc-icon:hover {
           background-color: #cde4fe; }
       stair-case ul li[data-sc-type="folder"][data-sc-state="open"] > .sc-current > .sc-icon {
         background-image: url("../../images/folder-open-solid.svg"); }

@@ -84,7 +84,7 @@ stair-case {
             }
 
             &[data-sc-type="folder"] {
-                .sc-icon {
+                > .sc-current > .sc-icon {
                     background-image: url('../../images/folder-solid.svg');
 
                     &:hover {
