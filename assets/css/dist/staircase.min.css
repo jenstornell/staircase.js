@@ -30,37 +30,33 @@ stair-case {
       padding-left: 1rem;
       padding-right: 1rem;
       color: #222; }
-      stair-case ul li.sc-active {
-        /*&[data-sc-type="folder"] &.sc-loading > .sc-current > .sc-icon {
-                }*/ }
-        stair-case ul li.sc-active > .sc-current > .sc-name,
-        stair-case ul li.sc-active > .sc-current > .sc-name:hover {
-          background: #0367d8;
-          color: #fff; }
+      stair-case ul li[data-sc-active] > .sc-current > .sc-name,
+      stair-case ul li[data-sc-active] > .sc-current > .sc-name:hover {
+        background: #0367d8;
+        color: #fff; }
       stair-case ul li .sc-current {
         align-items: center;
         display: flex; }
       stair-case ul li .sc-children {
         display: none; }
-      stair-case ul li[data-sc-state="open"] .sc-children {
+      stair-case ul li[data-sc-state="open"] > .sc-children {
         display: block; }
       stair-case ul li .sc-name,
       stair-case ul li .sc-icon {
-        padding: .2rem .2rem; }
+        padding: .2rem .2rem;
+        border-radius: .2rem; }
       stair-case ul li .sc-icon {
         background-size: 18px 18px;
         background-position: center;
         background-repeat: no-repeat;
         width: 24px;
         height: 24px; }
-      stair-case ul li .sc-name,
-      stair-case ul li .sc-icon {
-        border-radius: .2rem; }
-        stair-case ul li .sc-name:hover,
-        stair-case ul li .sc-icon:hover {
-          background-color: #cde4fe; }
+      stair-case ul li .sc-name:hover {
+        background-color: #cde4fe; }
       stair-case ul li[data-sc-type="folder"] .sc-icon {
         background-image: url("../../images/folder-solid.svg"); }
+        stair-case ul li[data-sc-type="folder"] .sc-icon:hover {
+          background-color: #cde4fe; }
       stair-case ul li[data-sc-type="folder"][data-sc-state="open"] > .sc-current > .sc-icon {
         background-image: url("../../images/folder-open-solid.svg"); }
       stair-case ul li[data-sc-type="folder"].sc-loading > .sc-current > .sc-icon {

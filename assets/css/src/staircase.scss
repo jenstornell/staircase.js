@@ -38,7 +38,7 @@ stair-case {
             padding-right: 1rem;
             color: #222;
 
-            &.sc-active {
+            &[data-sc-active] {
                 > .sc-current {
                     > .sc-name,
                     > .sc-name:hover {
@@ -46,9 +46,6 @@ stair-case {
                         color: #fff;
                     }
                 }
-
-                /*&[data-sc-type="folder"] &.sc-loading > .sc-current > .sc-icon {
-                }*/
             }
 
             .sc-current {
@@ -61,7 +58,7 @@ stair-case {
             }
 
             &[data-sc-state="open"] {
-                .sc-children {
+                > .sc-children {
                     display: block;
                 }
             }
@@ -69,6 +66,7 @@ stair-case {
             .sc-name,
             .sc-icon {
                 padding: .2rem .2rem;
+                border-radius: .2rem;
             }
 
             .sc-icon {
@@ -79,10 +77,7 @@ stair-case {
                 height: 24px;
             }
 
-            .sc-name,
-            .sc-icon {
-                border-radius: .2rem;
-
+            .sc-name {
                 &:hover {
                     background-color: hsl(212, 97%, 90%);
                 }
@@ -91,6 +86,10 @@ stair-case {
             &[data-sc-type="folder"] {
                 .sc-icon {
                     background-image: url('../../images/folder-solid.svg');
+
+                    &:hover {
+                        background-color: hsl(212, 97%, 90%);
+                    }
                 }
 
                 &[data-sc-state="open"] > .sc-current > .sc-icon {

@@ -7,7 +7,7 @@ var staircase = (function () {
         o = Object.assign({}, fn.defaults(), options);
 
         document.addEventListener("DOMContentLoaded", function(event) {
-            document.querySelector('stair-case').dataset.scName = '/';
+            document.querySelector(o.selector).dataset.scName = '/';
             fn.ajax('/');
         });
     };
@@ -16,8 +16,7 @@ var staircase = (function () {
     fn.defaults = function() {
         return {
             ajaxPath: 'ajax.php',
-            selector: 'stair-case',
-            prefix: 'sc'
+            selector: 'stair-case'
         };
     };
 
@@ -53,7 +52,7 @@ var staircase = (function () {
                 let current = document.querySelector('[data-sc-name="' + id + '"]');
                 
                 current.appendChild(element);
-                current.dataset.children = '';
+                current.dataset.scChildren = '';
                 current.dataset.scState = 'open';
 
                 fn.eventClickName();
@@ -96,9 +95,10 @@ var staircase = (function () {
 
         data.files.forEach(function(item) {
             let li = fn.createLi(item);
+            let id = fn.trimSlashes(parentName + '/' + item);
             
             li.dataset.scType = 'file';
-            li.dataset.scName = item;
+            li.dataset.scName = id;
 
             ul.appendChild(li);
         });
@@ -188,7 +188,7 @@ var staircase = (function () {
 
     // Event click folder 
     fn.eventClickFolder = function(current) {
-        var elements = current.querySelectorAll('li[data-sc-type="folder"]:not([data-children]) .sc-icon');
+        var elements = current.querySelectorAll('li[data-sc-type="folder"]:not([data-sc-children]) .sc-icon');
         
         elements.forEach(function(element) {
             element.addEventListener('click', function(e) {
@@ -213,8 +213,8 @@ var staircase = (function () {
     // Set info callback data
     fn.setData = function(el) {
         var data = {};
+        data.id = el.dataset.scName;
         data.element = el;
-        data.name = el.dataset.scName;
         data.type = el.dataset.scType;
 
         return data;
@@ -225,13 +225,13 @@ var staircase = (function () {
     fn.removeActive = function() {
         var elements = document.querySelectorAll('stair-case li');
         elements.forEach(function(element) {
-            delete element.classList.remove('sc-active');
+            delete element.dataset.scActive;
         });
     };
 
     // Set active
     fn.setActive = function(element) {
-        element.classList.add('sc-active');
+        element.dataset.scActive = '';
     };
 
     return fn;

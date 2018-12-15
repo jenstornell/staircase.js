@@ -19,7 +19,8 @@
       },
       callbackAfterLoad: function(data) {
         console.log(data);
-      }
+      },
+      selector: 'stair-case'
   });
 </script>
 
