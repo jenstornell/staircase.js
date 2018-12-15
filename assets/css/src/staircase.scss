@@ -53,12 +53,12 @@ stair-case {
                 display: flex;
             }
 
-            .sc-children {
+            > [data-sc-children] {
                 display: none;
             }
 
             &[data-sc-state="open"] {
-                > .sc-children {
+                > [data-sc-children] {
                     display: block;
                 }
             }

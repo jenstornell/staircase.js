@@ -79,7 +79,7 @@ var staircase = (function () {
     // Create list
     fn.createList = function(array, parentName) {
         var ul = document.createElement('ul'); 
-        ul.classList.add('sc-children');
+        ul.dataset.scChildren = '';
 
         let data = fn.toFilesFolders(array);
 
@@ -194,7 +194,7 @@ var staircase = (function () {
             element.addEventListener('click', function(e) {
                 var el = e.currentTarget.closest('[data-sc-name]');
 
-                if(el.dataset.children === undefined) {
+                if(el.dataset.scChildren === undefined) {
                     let name = el.dataset.scName;
                     id = fn.trimSlashes(name);
                     //el.dataset.scState = 'open';

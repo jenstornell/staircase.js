@@ -1,10 +1,13 @@
 # staircase.js
 
+*Version 1.0*
+
 Small ajax sidebar file tree browser without dependencies.
 
 ## In short
 
 - Vanilla JS
+- Ajax driven
 - Zero dependencies
 - Very small filesize
 - Super simple setup
@@ -22,7 +25,7 @@ Put the CSS within `<head></head>`.
 <link rel="stylesheet" href="assets/css/dist/staircase.min.css">
 ```
 
-## HTML
+### HTML
 
 Put a `stair-case` element within `<body></body>`. You can change the element name with an option.
 
@@ -39,6 +42,40 @@ Put the javascript before `</body>`.
 <script>
   staircase.init();
 </script>
+```
+
+### Ajax
+
+Ajax is used for getting files and folders from a parent. To demonstrate how it works I will use PHP.
+
+Create an `ajax.php` file and put it in your root.
+
+**Example**
+
+```php
+$post = json_decode(file_get_contents('php://input'), true);
+
+$data = [
+    'one.txt',
+    'two/',
+    'three/',
+    'file.png'
+];
+
+echo json_encode($data);
+```
+
+- The first row with `$post` is needed to get the `$_POST` variables sent with ajax in PHP.
+- The `$data` contains a list of files and folder.
+- The `$data` should probably depend on what is inside your `$post`.
+- To mark that it's a folder, just place a `/` at the end.
+- The files and folders will be grouped and sorted alphabetically so you don't need to think about that.
+- You need to print out the data as `json`.
+
+If you want to see that something really is loading with ajax, you can put the code below inside your PHP file. It will delay the result by 0.25 seconds.
+
+```php
+usleep(250000);
 ```
 
 ## Options
@@ -60,30 +97,7 @@ staircase.init({
 
 ### ajaxPath
 
-Staircase requires ajax to work. To demonstrate how it works we will use PHP, in this case.
-
-`ajaxPath` need a relative path to a file. In that file you can put something like below as a start.
-
-```php
-$post = json_decode(file_get_contents('php://input'), true);
-
-print_r($post);
-
-$data = [
-    'one.txt',
-    'two/',
-    'three/',
-    'file.png'
-];
-
-echo json_encode($data);
-```
-
-If you want to see that something really is loading with ajax, you can put the code below inside your PHP file. It will delay the result by 0.25 seconds.
-
-```php
-usleep(250000);
-```
+`ajaxPath` need a relative path to the ajax file.
 
 ### selector
 
@@ -130,6 +144,10 @@ You you want to help me improve staircase.js?
 - Bug fixes if you find any.
 - Enhancements and improvements that makes already existing things a bit better.
 - Pull requests or code in an issue. Both are equally fine.
+
+## Icons
+
+- Icons made by https://fontawesome.com
 
 ## Donate
 

@@ -37,9 +37,9 @@ stair-case {
       stair-case ul li .sc-current {
         align-items: center;
         display: flex; }
-      stair-case ul li .sc-children {
+      stair-case ul li > [data-sc-children] {
         display: none; }
-      stair-case ul li[data-sc-state="open"] > .sc-children {
+      stair-case ul li[data-sc-state="open"] > [data-sc-children] {
         display: block; }
       stair-case ul li .sc-name,
       stair-case ul li .sc-icon {
