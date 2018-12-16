@@ -14,6 +14,7 @@
 <script src="assets/js/src/staircase.js?t=<?= time(); ?>"></script>
 <script>
   staircase.init({
+    ajaxPath: 'ajax/ajax.php',
       callbackActive: function(args) {
           console.log(args);
       },

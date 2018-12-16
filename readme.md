@@ -1,6 +1,6 @@
 # staircase.js
 
-*Version 1.0*
+*Version 1.1*
 
 Small ajax sidebar file tree browser without dependencies.
 
@@ -136,6 +136,23 @@ callbackAfterLoad: function(args) {
     console.log(args);
 }
 ```
+
+### fetchParams
+
+For edge cases and security, you may need to change the fetch params.
+
+```js
+staircase.init({
+    fetchParams: {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+});
+```
+
+To see all possible params, visit [Mozilla - Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#Supplying_request_options)
 
 ## Help appreciated
 

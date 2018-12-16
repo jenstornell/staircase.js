@@ -1,10 +1,12 @@
 var staircase = (function () {
     var fn = {};
     var o = {};
+    var $;
 
     // Init
     fn.init = function(options) {
         o = Object.assign({}, fn.defaults(), options);
+        $ = fn.$;
 
         document.addEventListener("DOMContentLoaded", function(event) {
             document.querySelector(o.selector).dataset.scName = '/';
@@ -16,26 +18,38 @@ var staircase = (function () {
     fn.defaults = function() {
         return {
             ajaxPath: 'ajax.php',
-            selector: 'stair-case'
+            selector: 'stair-case',
+            fetchParams: {
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                }
+            }
         };
     };
+
+    // $ like jQuery
+    fn.$ = function(selector) {
+        let all = document.querySelectorAll(selector);
+        if(all.length == 0) return null;
+        if(all.length == 1) return all[0];
+        return all;
+    }
 
     // Ajax
     fn.ajax = function(id) {
         var data = {};
+        let params = o.fetchParams;
+
         data.id = id;
 
-        var json = JSON.stringify(data);
-        let current = document.querySelector('[data-sc-name="' + id + '"]');
+        let json = JSON.stringify(data);
+        let current = $(o.selector + '[data-sc-name="' + id + '"], ' + o.selector + ' [data-sc-name="' + id + '"]');
         current.classList.add('sc-loading');
 
-        fetch(o.ajaxPath, {
-            method: 'POST',
-            body: json,
-            headers:{
-                'Content-Type': 'application/json'
-            }
-        })
+        params.body = json;
+
+        fetch(o.ajaxPath, params)
         .then(function(response) {
             return response.text();
         })
@@ -49,7 +63,7 @@ var staircase = (function () {
             if(fn.isJson(text)) {
                 var array = JSON.parse(text);
                 var element = fn.createList(array, id);
-                let current = document.querySelector('[data-sc-name="' + id + '"]');
+                let current = $(o.selector + '[data-sc-name="' + id + '"],' + o.selector + ' [data-sc-name="' + id + '"]');
                 
                 current.appendChild(element);
                 current.dataset.scChildren = '';
@@ -158,7 +172,7 @@ var staircase = (function () {
 
     // Event click name
     fn.eventClickName = function() {
-        var elements = document.querySelectorAll('stair-case li .sc-name');
+        var elements = $(o.selector + ' li .sc-name');
         elements.forEach(function(element) {
             element.addEventListener('click', function(e) {
                 let el = e.currentTarget.closest('li');
@@ -172,8 +186,11 @@ var staircase = (function () {
         });
     };
 
+    // Click toggle loaded folders
     fn.eventClickToggle = function(current) {
-        let el = current.querySelector(':scope > .sc-current > .sc-icon');
+        let id = current.dataset.scName;
+        let el = $(o.selector + '[data-sc-name="' + id + '"] > .sc-current > .sc-icon,' + o.selector + ' [data-sc-name="' + id + '"] > .sc-current > .sc-icon');
+
         if(el) {
             el.addEventListener('click', function(e) {
                 if(current.dataset.scState == 'open') {
@@ -204,6 +221,7 @@ var staircase = (function () {
         });
     };
 
+    // Trim slashes
     fn.trimSlashes = function(str) {
         str = str.replace(/^\/|\/$/g, '');
         return str.replace(/^\/|\/$/g, '');
@@ -222,7 +240,7 @@ var staircase = (function () {
 
     // Remove active
     fn.removeActive = function() {
-        var elements = document.querySelectorAll('stair-case li');
+        var elements = $(o.selector + ' li');
         elements.forEach(function(element) {
             delete element.dataset.scActive;
         });
