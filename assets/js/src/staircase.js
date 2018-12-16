@@ -38,7 +38,7 @@ var staircase = (function () {
 
     // Ajax
     fn.ajax = function(id) {
-        var data = {};
+        let data = {};
         let params = o.fetchParams;
 
         data.id = id;
@@ -61,8 +61,8 @@ var staircase = (function () {
             args.element = current;
 
             if(fn.isJson(text)) {
-                var array = JSON.parse(text);
-                var element = fn.createList(array, id);
+                let array = JSON.parse(text);
+                let element = fn.createList(array, id);
                 let current = $(o.selector + '[data-sc-name="' + id + '"],' + o.selector + ' [data-sc-name="' + id + '"]');
                 
                 current.appendChild(element);
@@ -92,10 +92,10 @@ var staircase = (function () {
 
     // Create list
     fn.createList = function(array, parentName) {
-        var ul = document.createElement('ul'); 
-        ul.dataset.scChildren = '';
-
+        let ul = document.createElement('ul'); 
         let data = fn.toFilesFolders(array);
+
+        ul.dataset.scChildren = '';
 
         data.folders.forEach(function(item) {
             let li = fn.createLi(item);
@@ -143,7 +143,7 @@ var staircase = (function () {
 
     // To files and folders
     fn.toFilesFolders = function(array) {
-        var data = [];
+        let data = [];
         
         data.folders = [];
         data.files = [];
@@ -172,7 +172,7 @@ var staircase = (function () {
 
     // Event click name
     fn.eventClickName = function() {
-        var elements = $(o.selector + ' li .sc-name');
+        let elements = $(o.selector + ' li .sc-name');
         elements.forEach(function(element) {
             element.addEventListener('click', function(e) {
                 let el = e.currentTarget.closest('li');
@@ -204,11 +204,11 @@ var staircase = (function () {
 
     // Event click folder 
     fn.eventClickFolder = function(current) {
-        var elements = current.querySelectorAll('li[data-sc-type="folder"]:not([data-sc-children]) .sc-icon');
+        let elements = current.querySelectorAll('li[data-sc-type="folder"]:not([data-sc-children]) .sc-icon');
         
         elements.forEach(function(element) {
             element.addEventListener('click', function(e) {
-                var el = e.currentTarget.closest('[data-sc-name]');
+                let el = e.currentTarget.closest('[data-sc-name]');
 
                 if(el.dataset.scChildren === undefined) {
                     let name = el.dataset.scName;
@@ -223,13 +223,12 @@ var staircase = (function () {
 
     // Trim slashes
     fn.trimSlashes = function(str) {
-        str = str.replace(/^\/|\/$/g, '');
-        return str.replace(/^\/|\/$/g, '');
+        return str.replace(/^\/+|\/+$/g, '');
     };
 
     // Set info callback data
     fn.setData = function(el) {
-        var data = {};
+        let data = {};
         data.id = el.dataset.scName;
         data.element = el;
         data.type = el.dataset.scType;
@@ -240,7 +239,8 @@ var staircase = (function () {
 
     // Remove active
     fn.removeActive = function() {
-        var elements = $(o.selector + ' li');
+        let elements = $(o.selector + ' li');
+
         elements.forEach(function(element) {
             delete element.dataset.scActive;
         });
