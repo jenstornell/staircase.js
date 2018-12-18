@@ -69,7 +69,7 @@ var staircase = (function () {
                 current.dataset.scChildren = '';
                 current.dataset.scState = 'open';
 
-                fn.eventClickName();
+                fn.eventClickName(current);
                 fn.eventClickFolder(current);
                 fn.eventClickToggle(current);
 
@@ -171,8 +171,8 @@ var staircase = (function () {
     };
 
     // Event click name
-    fn.eventClickName = function() {
-        let elements = $(o.selector + ' li .sc-name');
+    fn.eventClickName = function(current) {
+        let elements = $(o.selector + ' li > .sc-current > .sc-name');
         elements.forEach(function(element) {
             element.addEventListener('click', function(e) {
                 let el = e.currentTarget.closest('li');
