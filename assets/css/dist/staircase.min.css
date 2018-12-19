@@ -43,16 +43,23 @@ stair-case {
         display: block; }
       stair-case ul li .sc-name,
       stair-case ul li .sc-icon {
-        padding: .2rem .2rem;
         border-radius: .2rem; }
       stair-case ul li .sc-icon {
+        padding: 0 .2rem;
         background-size: 18px 18px;
         background-position: center;
         background-repeat: no-repeat;
         width: 24px;
         height: 24px; }
-      stair-case ul li .sc-name:hover {
-        background-color: #cde4fe; }
+      stair-case ul li .sc-name {
+        height: 24px;
+        line-height: 24px;
+        padding-left: .2rem;
+        margin-top: .2rem;
+        margin-bottom: .2rem;
+        padding-right: .2rem; }
+        stair-case ul li .sc-name:hover {
+          background-color: #cde4fe; }
       stair-case ul li[data-sc-type="folder"] > .sc-current > .sc-icon {
         background-image: url("../../images/folder-solid.svg"); }
         stair-case ul li[data-sc-type="folder"] > .sc-current > .sc-icon:hover {

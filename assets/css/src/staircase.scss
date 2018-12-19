@@ -65,11 +65,11 @@ stair-case {
 
             .sc-name,
             .sc-icon {
-                padding: .2rem .2rem;
                 border-radius: .2rem;
             }
 
             .sc-icon {
+                padding: 0 .2rem;
                 background-size: 18px 18px;
                 background-position: center;
                 background-repeat: no-repeat;
@@ -78,6 +78,13 @@ stair-case {
             }
 
             .sc-name {
+                height: 24px;
+                line-height: 24px;
+                padding-left: .2rem;
+                margin-top: .2rem;
+                margin-bottom: .2rem;
+                padding-right: .2rem;
+
                 &:hover {
                     background-color: hsl(212, 97%, 90%);
                 }

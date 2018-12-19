@@ -1,6 +1,6 @@
 # staircase.js
 
-*Version 1.1*
+*Version 1.2*
 
 Small ajax sidebar file tree browser without dependencies.
 
@@ -88,11 +88,16 @@ All possible options in one go.
 staircase.init({
     ajaxPath: 'ajax.php',
     selector: 'stair-case',
-    callbackActive: function(args) {
-        console.log(args);
-    },
-    callbackAfterLoad: function(args) {
-        console.log(args);
+    callbacks: {
+        select: function(args) {
+            console.log(args);
+        },
+        load: function(args) {
+            console.log(args);
+        },
+        toggle: function(args) {
+            console.log(args);
+        }
     }
 });
 ```
@@ -105,7 +110,7 @@ staircase.init({
 
 By default you add the custom element `<stair-case></stair-case>` to your HTML. With the option `selector` you can change `stair-case` to another selector.
 
-### callbackActive
+### callback - select
 
 When you click a file or folder name it becomes active. If you add a callback function as an option you get access to some arguments.
 
@@ -116,12 +121,16 @@ When you click a file or folder name it becomes active. If you add a callback fu
 - `type` is the type like `file` or `folder`.
 
 ```js
-callbackActive: function(args) {
-    console.log(args);
-},
+staircase.init({
+    callbacks: {
+        select: function(args) {
+            console.log(args);
+        }
+    }
+});
 ```
 
-### callbackAfterLoad
+### load
 
 After a new list of files or folders has been loaded this callback is called if you have a function for it.
 
@@ -132,9 +141,34 @@ After a new list of files or folders has been loaded this callback is called if 
 - `success` is a check if the ajax has been loaded correctly. It contains `true` or `false`.
 
 ```js
-callbackAfterLoad: function(args) {
-    console.log(args);
-}
+staircase.init({
+    callbacks: {
+        load: function(args) {
+            console.log(args);
+        }
+    }
+});
+```
+
+### Toggle
+
+When you toggle folders that has already been loaded, this callback is triggered.
+
+**The `args` in this case contains these variables:**
+
+- `id` is the file or folder path, something like `myfolder/myfile.txt`.
+- `element` is the closest list element which also contains additional data to extract.
+- `type` is the type like `file` or `folder`.
+- `state` is the state of the folder, `open` or `close`.
+
+```js
+staircase.init({
+    callbacks: {
+        toggle: function(args) {
+            console.log(args);
+        }
+    }
+});
 ```
 
 ### fetchParams

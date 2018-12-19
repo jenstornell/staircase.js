@@ -15,13 +15,18 @@
 <script>
   staircase.init({
     ajaxPath: 'example/ajax/ajax.php',
-      callbackActive: function(args) {
-          console.log(args);
+    selector: 'stair-case',
+    callbacks: {
+      select: function(args) {
+        console.log(args);
       },
-      callbackAfterLoad: function(data) {
-        console.log(data);
+      load: function(args) {
+        console.log(args);
       },
-      selector: 'stair-case'
+      toggle: function(args) {
+        console.log(args);
+      }
+    }
   });
 </script>
 

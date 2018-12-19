@@ -69,7 +69,7 @@ var staircase = (function () {
                 current.dataset.scChildren = '';
                 current.dataset.scState = 'open';
 
-                fn.eventClickName(current);
+                fn.eventClickName(id);
                 fn.eventClickFolder(current);
                 fn.eventClickToggle(current);
 
@@ -77,7 +77,10 @@ var staircase = (function () {
             } else {
                 args.success = false;
             }
-            o.callbackAfterLoad(args);
+
+            if(typeof o.callbacks.load === 'function') {
+                o.callbacks.select(args);
+            }
         });
     };
     
@@ -171,8 +174,12 @@ var staircase = (function () {
     };
 
     // Event click name
-    fn.eventClickName = function(current) {
-        let elements = $(o.selector + ' li > .sc-current > .sc-name');
+    fn.eventClickName = function(id) {
+        let selector_current = o.selector + '[data-sc-name="' + id + '"] > ul > li > .sc-current > .sc-name';
+        let selector_children = o.selector + ' [data-sc-name="' + id + '"] > ul > li > .sc-current > .sc-name';
+        let selector = selector_current + ', ' + selector_children;
+        let elements = document.querySelectorAll(selector);
+
         elements.forEach(function(element) {
             element.addEventListener('click', function(e) {
                 let el = e.currentTarget.closest('li');
@@ -180,7 +187,10 @@ var staircase = (function () {
                 
                 fn.removeActive();
                 fn.setActive(el);
-                o.callbackActive(data);
+
+                if(typeof o.callbacks.select === 'function') {
+                    o.callbacks.select(data);
+                }
             });
 
         });
@@ -189,14 +199,23 @@ var staircase = (function () {
     // Click toggle loaded folders
     fn.eventClickToggle = function(current) {
         let id = current.dataset.scName;
-        let el = $(o.selector + '[data-sc-name="' + id + '"] > .sc-current > .sc-icon,' + o.selector + ' [data-sc-name="' + id + '"] > .sc-current > .sc-icon');
+        let element = $(o.selector + '[data-sc-name="' + id + '"] > .sc-current > .sc-icon,' + o.selector + ' [data-sc-name="' + id + '"] > .sc-current > .sc-icon');
 
-        if(el) {
-            el.addEventListener('click', function(e) {
+        if(element) {
+            element.addEventListener('click', function(e) {
+                let el = e.currentTarget.closest('li');
+                let data = fn.setData(el);
+
                 if(current.dataset.scState == 'open') {
                     current.dataset.scState = 'close';
                 } else {
                     current.dataset.scState = 'open';
+                }
+
+                data.state = current.dataset.scState;
+
+                if(typeof o.callbacks.toggle === 'function') {
+                    o.callbacks.toggle(data);
                 }
             });
         }
@@ -213,7 +232,6 @@ var staircase = (function () {
                 if(el.dataset.scChildren === undefined) {
                     let name = el.dataset.scName;
                     id = fn.trimSlashes(name);
-                    //el.dataset.scState = 'open';
                     fn.ajax(id);
                 }
             }, true);
