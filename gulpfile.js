@@ -1,53 +1,55 @@
-var gulp 	= require('gulp'),
-  	sass 	= require('gulp-sass'),
-  	concat 	= require('gulp-concat'),
-  	uglify 	= require('gulp-uglify-es').default,
-  	rename 	= require('gulp-rename');
+let gulp = require("gulp");
+let sass = require("gulp-sass");
+let autoprefixer = require("gulp-autoprefixer");
+let concat = require("gulp-concat");
+let uglify = require('gulp-uglify-es').default;
+let csso = require('gulp-csso');
+let rename = require('gulp-rename');
 
-var paths = {
-  styles: {
-    src: 'assets/css/src/*.scss',
-    dest: 'assets/css/dist/'
-  },
-  scripts: {
-    src: 'assets/js/src/*.js',
-    dest: 'assets/js/dist/'
-  }
+var css = {
+  src: 'assets/css/src/**/*.scss',
+  dest: 'assets/css/dist',
+  filename: 'staircase.scss'
 };
 
-function styles() {
-  return gulp
-  	.src(paths.styles.src, {
-      sourcemaps: true
-    })
-	.pipe(sass())
-	.pipe(rename({
-	  basename: 'staircase',
-	  suffix: '.min'
-	}))
-.pipe(gulp.dest(paths.styles.dest));
+var js = {
+  src: 'assets/js/src/**/*.js',
+  dest: 'assets/js/dist',
+  filename: 'staircase.js'
+};
+
+function style() {
+  return (
+    gulp
+      .src(css.src)
+      .pipe(concat(css.filename))
+      .pipe(sass())
+      .on("error", sass.logError)
+      .pipe(autoprefixer())
+      .pipe(gulp.dest(css.dest))
+      .pipe(csso())
+      .pipe(rename({extname: '.min.css'}))
+      .pipe(gulp.dest(css.dest))
+  );
 }
 
-function scripts() {
-  return gulp
-	.src(paths.scripts.src, {
-		sourcemaps: true
-	})
-	.pipe(uglify())
-	.pipe(concat('staircase.min.js'))
-	.pipe(gulp.dest(paths.scripts.dest));
+function script() {
+  return (
+    gulp
+      .src(js.src)
+      .pipe(concat(js.filename))
+      .pipe(gulp.dest(js.dest))
+      .pipe(uglify())
+      .pipe(rename({extname: '.min.js'}))
+      .pipe(gulp.dest(js.dest))
+  );
 }
 
-function watch() {
-  gulp
-	  .watch(paths.scripts.src, scripts);
-  gulp
-  	.watch(paths.styles.src, styles);
+function watch(){
+  gulp.watch(css.src, style);
+  gulp.watch(js.src, script);
 }
 
-var build = gulp.parallel(styles, scripts, watch);
-
-gulp
-  .task(build);
-gulp
-  .task('default', build);
+exports.css = style;
+exports.js = script;
+exports.default = watch;

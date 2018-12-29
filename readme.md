@@ -1,6 +1,6 @@
 # staircase.js
 
-*Version 1.2*
+*Version 1.3*
 
 Small ajax sidebar file tree browser without dependencies.
 
@@ -42,7 +42,7 @@ Put the javascript before `</body>`.
 ```html
 <script src="assets/js/src/staircase.js"></script>
 <script>
-  staircase.init();
+  staircase();
 </script>
 ```
 
@@ -85,20 +85,20 @@ usleep(250000);
 All possible options in one go.
 
 ```js
-staircase.init({
-    ajaxPath: 'ajax.php',
-    selector: 'stair-case',
-    callbacks: {
-        select: function(args) {
-            console.log(args);
-        },
-        load: function(args) {
-            console.log(args);
-        },
-        toggle: function(args) {
-            console.log(args);
-        }
+staircase({
+  ajaxPath: 'ajax.php',
+  selector: 'stair-case',
+  callbacks: {
+    select: function(args) {
+        console.log(args);
+    },
+    load: function(args) {
+        console.log(args);
+    },
+    toggle: function(args) {
+        console.log(args);
     }
+  }
 });
 ```
 
@@ -121,12 +121,12 @@ When you click a file or folder name it becomes active. If you add a callback fu
 - `type` is the type like `file` or `folder`.
 
 ```js
-staircase.init({
-    callbacks: {
-        select: function(args) {
-            console.log(args);
-        }
+staircase({
+  callbacks: {
+    select: function(args) {
+        console.log(args);
     }
+  }
 });
 ```
 
@@ -141,12 +141,12 @@ After a new list of files or folders has been loaded this callback is called if 
 - `success` is a check if the ajax has been loaded correctly. It contains `true` or `false`.
 
 ```js
-staircase.init({
-    callbacks: {
-        load: function(args) {
-            console.log(args);
-        }
+staircase({
+  callbacks: {
+    load: function(args) {
+        console.log(args);
     }
+  }
 });
 ```
 
@@ -162,12 +162,12 @@ When you toggle folders that has already been loaded, this callback is triggered
 - `state` is the state of the folder, `open` or `close`.
 
 ```js
-staircase.init({
-    callbacks: {
-        toggle: function(args) {
-            console.log(args);
-        }
+staircase({
+  callbacks: {
+    toggle: function(args) {
+        console.log(args);
     }
+  }
 });
 ```
 
@@ -176,13 +176,13 @@ staircase.init({
 For edge cases and security, you may need to change the fetch params.
 
 ```js
-staircase.init({
-    fetchParams: {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        }
+staircase({
+  fetchParams: {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
     }
+  }
 });
 ```
 

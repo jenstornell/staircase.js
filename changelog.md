@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3
+
+- Converted to ES6 javascript version.
+- Changed syntax from `staircase.init();` to `staircase();`
+
 ## 1.2
 
 - Fixed bug with callback that was called multiple times.

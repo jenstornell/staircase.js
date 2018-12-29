@@ -13,7 +13,7 @@
 
 <script src="assets/js/src/staircase.js?t=<?= time(); ?>"></script>
 <script>
-  staircase.init({
+  staircase({
     ajaxPath: 'example/ajax/ajax.php',
     selector: 'stair-case',
     callbacks: {
