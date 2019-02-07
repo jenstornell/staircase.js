@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.4
+
+- Minor CSS fixes.
+- Rewritten syntax. Options is now added in html.
+- Rewritten callback. Now you setup a class with callbacks.
+- staircase.add()
+- staircase.delete()
+- staircase.open()
+- staircase.close()
+- staircase.sort()
+- staircase.rename()
+- staircase.select()
+- staircase.deselect()
+
 ## 1.3
 
 - Converted to ES6 javascript version.

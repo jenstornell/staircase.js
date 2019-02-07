@@ -13,6 +13,14 @@ body {
     -webkit-transform: rotate(359deg);
             transform: rotate(359deg); } }
 
+@keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg); } }
+
 stair-case {
   background: #fff;
   display: block;
@@ -21,7 +29,6 @@ stair-case {
   padding: 1rem 0;
   margin: 1rem; }
   stair-case ul {
-    margin-left: 1rem;
     list-style: none; }
     stair-case ul li {
       cursor: default;
@@ -51,7 +58,7 @@ stair-case {
         border-radius: .2rem; }
       stair-case ul li .sc-icon {
         padding: 0 .2rem;
-        background-size: 18px 18px;
+        background-size: 16px 18px;
         background-position: center;
         background-repeat: no-repeat;
         width: 24px;
@@ -64,11 +71,11 @@ stair-case {
         margin-bottom: .2rem;
         padding-right: .2rem; }
         stair-case ul li .sc-name:hover {
-          background-color: #cde4fe; }
+          background-color: #eee; }
       stair-case ul li[data-sc-type="folder"] > .sc-current > .sc-icon {
         background-image: url("../../images/folder-solid.svg"); }
         stair-case ul li[data-sc-type="folder"] > .sc-current > .sc-icon:hover {
-          background-color: #cde4fe; }
+          background-color: #eee; }
       stair-case ul li[data-sc-type="folder"][data-sc-state="open"] > .sc-current > .sc-icon {
         background-image: url("../../images/folder-open-solid.svg"); }
       stair-case ul li[data-sc-type="folder"].sc-loading > .sc-current > .sc-icon {

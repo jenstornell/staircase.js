@@ -5,6 +5,7 @@ $root = __DIR__ . '/../tree';
 
 $path = ($post['id'] == '/') ? '' : '/' . $post['id'];
 $glob = glob($root . $path . '/*');
+$data = [];
 
 if($glob) {
     foreach($glob as $item) {

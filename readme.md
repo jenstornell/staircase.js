@@ -11,7 +11,7 @@ Small ajax sidebar file tree browser without dependencies.
 - Vanilla JS
 - Ajax driven
 - Zero dependencies
-- Very small filesize
+- Small filesize
 - Super simple setup
 - Grouped files and folders
 - Sorted files and folders
@@ -29,21 +29,24 @@ Put the CSS within `<head></head>`.
 
 ### HTML
 
+Add the staircase selector to your html body like below.
+
+```js
+<body data-staircase-selector="stair-case">
+```
+
 Put a `stair-case` element within `<body></body>`. You can change the element name with an option.
 
 ```html
-<stair-case></stair-case>
+<stair-case data-staircase-path="example/ajax/ajax.php"></stair-case>
 ```
 
 ### Javascript
 
-Put the javascript before `</body>`.
+Put the javascript before `</body>`. The script will then be autoloaded.
 
 ```html
 <script src="assets/js/src/staircase.js"></script>
-<script>
-  staircase();
-</script>
 ```
 
 ### Ajax
@@ -82,109 +85,69 @@ usleep(250000);
 
 ## Options
 
-All possible options in one go.
+
+## Callbacks
+
+To use callbacks you need to create a class like below.
 
 ```js
-staircase({
-  ajaxPath: 'ajax.php',
-  selector: 'stair-case',
-  callbacks: {
-    select: function(args) {
-        console.log(args);
-    },
-    load: function(args) {
-        console.log(args);
-    },
-    toggle: function(args) {
-        console.log(args);
-    }
+class StaircaseCallbacks {
+  load(params) {
+    console.log(params);
   }
-});
+  toggle(params) {
+    console.log(params);
+  }
+  select(params) {
+    console.log(params);
+  }
+}
 ```
 
-### ajaxPath
+- **load** - Is only triggered when staircase is loaded
+- **toggle** - Is triggered every time when a folder is clicked
+- **select** - Is triggered every time you select a file or a folder
 
-`ajaxPath` need a relative path to the ajax file.
-
-### selector
-
-By default you add the custom element `<stair-case></stair-case>` to your HTML. With the option `selector` you can change `stair-case` to another selector.
-
-### callback - select
-
-When you click a file or folder name it becomes active. If you add a callback function as an option you get access to some arguments.
-
-**The `args` in this case contains these variables:**
-
-- `id` is the file or folder path, something like `myfolder/myfile.txt`.
-- `element` is the closest list element which also contains additional data to extract.
-- `type` is the type like `file` or `folder`.
-
-```js
-staircase({
-  callbacks: {
-    select: function(args) {
-        console.log(args);
-    }
-  }
-});
-```
-
-### load
-
-After a new list of files or folders has been loaded this callback is called if you have a function for it.
-
-**The `args` in this case contains these variables:**
-
-- `id` is the file or folder path, something like `myfolder/myfile.txt`.
-- `element` is the closest list element which also contains additional data to extract.
-- `success` is a check if the ajax has been loaded correctly. It contains `true` or `false`.
-
-```js
-staircase({
-  callbacks: {
-    load: function(args) {
-        console.log(args);
-    }
-  }
-});
-```
-
-### Toggle
-
-When you toggle folders that has already been loaded, this callback is triggered.
-
-**The `args` in this case contains these variables:**
+### Callback params
 
 - `id` is the file or folder path, something like `myfolder/myfile.txt`.
 - `element` is the closest list element which also contains additional data to extract.
 - `type` is the type like `file` or `folder`.
 - `state` is the state of the folder, `open` or `close`.
+- `success` is a check if the ajax has been loaded correctly. It contains `true` or `false`.
+
+## Methods
+
+Be aware. These methods will not add any files or folders to the system. They will only add new visual items. It can be useful to populate the tree with them when using ajax.
 
 ```js
-staircase({
-  callbacks: {
-    toggle: function(args) {
-        console.log(args);
-    }
-  }
-});
+staircase.add(parent_id, new_name, type);
+staircase.delete(id, type);
+
+staircase.open(id);
+staircase.close(id);
+
+staircase.rename(id, new_name, type);
+
+staircase.select(id, type);
+staircase.deselect(id, type);
 ```
 
-### fetchParams
+### Methods variables
 
-For edge cases and security, you may need to change the fetch params.
+- **parent_id** - The parent id of `my/parent/current` would be `my/parent`
+- **id** - The id is the path of the item, something like `my/folder/filename.txt`
+- **type** - The type is `file` or `folder`
+- **new_name** - A new name like `my_new_filename.txt`
 
-```js
-staircase({
-  fetchParams: {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    }
-  }
-});
-```
+### Methods explained
+
+- **add** - Add a new item
+- **delete** - Delete an item
+- **close** - Closes a folder if it's open
+- **rename** - Rename an item
+- **select** - Select an item
+- **deselect** - Deselect an item
 
 To see all possible params, visit [Mozilla - Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#Supplying_request_options)
 
