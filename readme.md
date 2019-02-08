@@ -84,9 +84,6 @@ If you want to see that something really is loading with ajax, you can put the c
 usleep(250000);
 ```
 
-## Options
-
-
 ## Callbacks
 
 To use callbacks you need to create a class like below.
