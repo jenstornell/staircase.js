@@ -1,6 +1,6 @@
 # staircase.js
 
-*Version 1.3*
+*Version 1.5*
 
 Small ajax sidebar file tree browser without dependencies.
 
@@ -15,6 +15,7 @@ Small ajax sidebar file tree browser without dependencies.
 - Super simple setup
 - Grouped files and folders
 - Sorted files and folders
+- Method support
 - Callback support
 
 ## Setup
@@ -31,11 +32,11 @@ Put the CSS within `<head></head>`.
 
 Add the staircase selector to your html body like below.
 
-```js
+```html
 <body data-staircase-selector="stair-case">
 ```
 
-Put a `stair-case` element within `<body></body>`. You can change the element name with an option.
+Put the `stair-case` element within `<body></body>`. You also need to add the ajax url.
 
 ```html
 <stair-case data-staircase-path="example/ajax/ajax.php"></stair-case>
@@ -104,9 +105,9 @@ class StaircaseCallbacks {
 }
 ```
 
-- **load** - Is only triggered when staircase is loaded
-- **toggle** - Is triggered every time when a folder is clicked
-- **select** - Is triggered every time you select a file or a folder
+- `load` - Is only triggered when staircase is loaded
+- `toggle` - Is triggered every time when a folder is clicked
+- `select` - Is triggered every time you select a file or a folder
 
 ### Callback params
 
@@ -131,23 +132,27 @@ staircase.rename(id, new_name, type);
 
 staircase.select(id, type);
 staircase.deselect(id, type);
+
+staircase.refresh(id);
 ```
 
 ### Methods variables
 
-- **parent_id** - The parent id of `my/parent/current` would be `my/parent`
-- **id** - The id is the path of the item, something like `my/folder/filename.txt`
-- **type** - The type is `file` or `folder`
-- **new_name** - A new name like `my_new_filename.txt`
+- `parent_id` - The parent id of `my/parent/current` would be `my/parent`
+- `id` - The id is the path of the item, something like `my/folder/filename.txt`
+- `type` - The type is `file` or `folder`
+- `new_name` - A new name like `my_new_filename.txt`
 
 ### Methods explained
 
-- **add** - Add a new item
-- **delete** - Delete an item
-- **close** - Closes a folder if it's open
-- **rename** - Rename an item
-- **select** - Select an item
-- **deselect** - Deselect an item
+- `add` - Add a new item
+- `delete` - Delete an item
+- `open` - Opens a folder. It can also open a nested folder
+- `close` - Closes a folder if it's open
+- `rename` - Rename an item
+- `select` - Select an item
+- `deselect` - Deselect an item
+- `refresh` - Refresh a folder and all it's sub contents
 
 To see all possible params, visit [Mozilla - Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#Supplying_request_options)
 

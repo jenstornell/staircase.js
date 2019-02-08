@@ -33,4 +33,9 @@ class staircase {
     let staircase = new StaircaseCore();
     staircase.close(id);
   }
+
+  static refresh(id) {
+    let staircase = new StaircaseCore();
+    staircase.refresh(id);
+  }
 }

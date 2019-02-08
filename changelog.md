@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5
+
+- Added staircase.refresh() method
+
 ## 1.4
 
 - Minor CSS fixes.

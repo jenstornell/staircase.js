@@ -18,6 +18,7 @@
 <button class="close">Close</button>
 <button class="select">Select</button>
 <button class="deselect">Deselect</button>
+<button class="refresh">Refresh</button>
 
 <script src="assets/js/dist/staircase.js?t=<?= time(); ?>"></script>
 <script>
@@ -63,6 +64,10 @@
 
     document.querySelector('.deselect').addEventListener('click', (e) => {
       staircase.deselect('folder1/subfolder', 'folder');
+    });
+
+    document.querySelector('.refresh').addEventListener('click', (e) => {
+      staircase.refresh('folder2/folder3');
     });
   });
 </script>
