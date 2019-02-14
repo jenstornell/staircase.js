@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.6
+
+- Bug fixes
+- Added `callback` as third argument to `staircase.refresh()`
+
 ## 1.5
 
 - Added staircase.refresh() method
