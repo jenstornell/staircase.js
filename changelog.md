@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.7
+
+- Changed `staircase.delete(id)`, no need for type.
+- Changed `staircase.add(id, type)`, shorter syntax.
+- Changed `staircase.rename(id, new_name)`, no need for type.
+- Changed `staircase.select(id, callback)`, no need for type.
+- Changed `staircase.deselect(callback)`, no need for id or type.
+
 ## 1.6
 
 - Bug fixes

@@ -1,6 +1,6 @@
 # staircase.js
 
-*Version 1.6*
+*Version 1.7*
 
 Small ajax sidebar file tree browser without dependencies.
 
@@ -119,16 +119,16 @@ class StaircaseCallbacks {
 Be aware. These methods will not add any files or folders to the system. They will only add new visual items. It can be useful to populate the tree with them when using ajax.
 
 ```js
-staircase.add(parent_id, new_name, type);
-staircase.delete(id, type);
+staircase.add(id, type);
+staircase.delete(id);
 
 staircase.open(id);
 staircase.close(id);
 
-staircase.rename(id, new_name, type);
+staircase.rename(id, new_name);
 
-staircase.select(id, type);
-staircase.deselect(id, type);
+staircase.select(id, callback = true);
+staircase.deselect(callback = true);
 
 staircase.refresh(id);
 ```
@@ -138,7 +138,8 @@ staircase.refresh(id);
 - `parent_id` - The parent id of `my/parent/current` would be `my/parent`
 - `id` - The id is the path of the item, something like `my/folder/filename.txt`
 - `type` - The type is `file` or `folder`
-- `new_name` - A new name like `my_new_filename.txt`
+- `new_name` - A new name like `my_new_filename.txt`,
+- `callback` - Optional value. In case you don't want to trigger the callback, set it to `false`.
 
 ### Methods explained
 

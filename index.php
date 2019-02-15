@@ -11,13 +11,13 @@
 
 <stair-case data-staircase-path="example/ajax/ajax.php"></stair-case>
 
-<button class="add">Add</button>
-<button class="delete">Delete</button>
-<button class="rename">Rename</button>
+<button class="add">Add to root</button>
+<button class="delete-root">Delete root</button>
+<button class="rename-root">Rename root</button>
 <button class="open">Open</button>
 <button class="close">Close</button>
-<button class="select">Select</button>
-<button class="deselect">Deselect</button>
+<button class="select-root">Select root</button>
+<button class="deselect-root">Deselect root</button>
 <button class="refresh-root">Refresh root</button>
 <button class="refresh-child">Refresh child</button>
 
@@ -37,18 +37,16 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     document.querySelector('.add').addEventListener('click', (e) => {
-      staircase.add('/', 'callback_rootfilename.txt', 'file');
-      staircase.add('/', 'callback_rootfolder', 'folder');
-      staircase.add('/', 'aaa', 'file');
-      staircase.add('/', 'bbb', 'folder');
+      staircase.add('new_file.txt', 'file');
+      staircase.add('new_folder', 'folder');
     });
 
-    document.querySelector('.delete').addEventListener('click', (e) => {
-      staircase.delete('folder1/subfolder', 'folder');
+    document.querySelector('.delete-root').addEventListener('click', (e) => {
+      staircase.delete('folder1');
     });
 
-    document.querySelector('.rename').addEventListener('click', (e) => {
-      staircase.rename('folder1/subfolder', 'new_foldername', 'folder');
+    document.querySelector('.rename-root').addEventListener('click', (e) => {
+      staircase.rename('folder1', 'new_name');
     });
 
     document.querySelector('.open').addEventListener('click', (e) => {
@@ -59,12 +57,12 @@
       staircase.close('folder1/subfolder', 'folder');
     });
 
-    document.querySelector('.select').addEventListener('click', (e) => {
-      staircase.select('folder1/subfolder', 'folder');
+    document.querySelector('.select-root').addEventListener('click', (e) => {
+      staircase.select('folder1');
     });
 
-    document.querySelector('.deselect').addEventListener('click', (e) => {
-      staircase.deselect('folder1/subfolder', 'folder');
+    document.querySelector('.deselect-root').addEventListener('click', (e) => {
+      staircase.deselect('folder1');
     });
 
     document.querySelector('.refresh-root').addEventListener('click', (e) => {

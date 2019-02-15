@@ -1,27 +1,27 @@
 class staircase {
-  static add(base, name, type) {
+  static add(id, type) {
     let staircase = new StaircaseCore();
-    staircase.add(base, name, type);
+    staircase.add(id, type);
   }
 
-  static delete(id, type) {
+  static delete(id) {
     let staircase = new StaircaseCore();
-    staircase.delete(id, type);
+    staircase.delete(id);
   }
 
-  static rename(id, name, type) {
+  static rename(id, name) {
     let staircase = new StaircaseCore();
-    staircase.rename(id, name, type);
+    staircase.rename(id, name);
   }
 
-  static select(id, type) {
+  static select(id, callback = true) {
     let staircase = new StaircaseCore();
-    staircase.select(id, type);
+    staircase.select(id, callback);
   }
 
-  static deselect(id, type) {
+  static deselect(id, callback = true) {
     let staircase = new StaircaseCore();
-    staircase.deselect(id, type);
+    staircase.deselect(id, callback);
   }
 
   static open(id) {
