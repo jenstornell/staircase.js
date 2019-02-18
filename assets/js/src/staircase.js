@@ -40,6 +40,17 @@ class StaircaseCore {
 
     if(current.dataset.scChildren !== undefined) {
       this.state(current, 'open');
+
+      if(this.goal_id === id && this.type == 'open') {
+        let args = {};
+        args.id = id;
+        args.success = true;
+        args.element = current;
+        this.callback('open', args);
+        this.type = null;
+        this.goal_id = null;
+      }
+      
       if(!rest.length) return;
       this.ajax(rest);
       return;
