@@ -177,7 +177,7 @@ You you want to help me improve staircase.js?
 
 ## Libraries used
 
-- [Remixicon](https://remixicon.com/) - A special thanks to [xiaochunjimmy](https://github.com/xiaochunjimmy) for not only providing a beautiful icon pack with 24px icons, but also for making custom designed 18px icons for this project.
+- [Remixicon](https://remixicon.com/) - A special thanks to [xiaochunjimmy](https://github.com/xiaochunjimmy) for not only providing a beautiful icon pack with 24px icons, but also for making custom designed 18px icons for this filetree.
 
 ## Donate
 
