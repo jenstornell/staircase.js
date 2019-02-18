@@ -1,44 +1,29 @@
-class staircase {
-  static add(id, type) {
-    let staircase = new StaircaseCore();
-    staircase.add(id, type);
+const staircase = {
+  add(id, type) {
+    new StaircaseCore().add(id, type);
+  },
+  delete(id) {
+    new StaircaseCore().delete(id);
+  },
+  rename(id, name) {
+    new StaircaseCore().rename(id, name);
+  },
+  select(id, callback = true) {
+    new StaircaseCore().select(id, callback);
+  },
+  deselect(callback = true) {
+    new StaircaseCore().deselect(callback);
+  },
+  open(id) {
+    new StaircaseCore().open(id);
+  },
+  close(id) {
+    new StaircaseCore().close(id);
+  },
+  refresh(id) {
+    new StaircaseCore().refresh(id);
   }
-
-  static delete(id) {
-    let staircase = new StaircaseCore();
-    staircase.delete(id);
-  }
-
-  static rename(id, name) {
-    let staircase = new StaircaseCore();
-    staircase.rename(id, name);
-  }
-
-  static select(id, callback = true) {
-    let staircase = new StaircaseCore();
-    staircase.select(id, callback);
-  }
-
-  static deselect(id, callback = true) {
-    let staircase = new StaircaseCore();
-    staircase.deselect(id, callback);
-  }
-
-  static open(id) {
-    let staircase = new StaircaseCore();
-    staircase.open(id);
-  }
-
-  static close(id) {
-    let staircase = new StaircaseCore();
-    staircase.close(id);
-  }
-
-  static refresh(id) {
-    let staircase = new StaircaseCore();
-    staircase.refresh(id);
-  }
-}
+};
 class StaircaseCore {
   options() {
     let selector = this.$('body').dataset.staircaseSelector;
@@ -171,11 +156,9 @@ class StaircaseCore {
     if(!li) return;
     if(li.dataset.scState !== 'open') return;
 
-    li.remove();
+    li.remove(this.dirname(id));
 
-    let base = (this.dirname(id)) ? this.dirname(id) : '/';
-
-    this.add(base, this.basename(id), 'folder');
+    this.add(id, 'folder');
     this.open(id);
   }
 
@@ -323,7 +306,6 @@ class StaircaseCore {
 
     data.folders.forEach((item) => {
       let join = this.join(base, item);
-      console.log(join);
       let li = this.append(join, 'folder');
       ul.appendChild(li);
     });

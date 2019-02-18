@@ -1,6 +1,6 @@
 # staircase.js
 
-*Version 1.7*
+*Version 1.8*
 
 Small ajax sidebar file tree browser without dependencies.
 

@@ -130,11 +130,9 @@ class StaircaseCore {
     if(!li) return;
     if(li.dataset.scState !== 'open') return;
 
-    li.remove();
+    li.remove(this.dirname(id));
 
-    let base = (this.dirname(id)) ? this.dirname(id) : '/';
-
-    this.add(base, this.basename(id), 'folder');
+    this.add(id, 'folder');
     this.open(id);
   }
 
@@ -282,7 +280,6 @@ class StaircaseCore {
 
     data.folders.forEach((item) => {
       let join = this.join(base, item);
-      console.log(join);
       let li = this.append(join, 'folder');
       ul.appendChild(li);
     });

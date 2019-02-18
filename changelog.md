@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.8
+
+- Switched from static class to const.
+- Fixed bug with `staircase.deselect()`
+- Fixed bug with `staircase.refresh()`
+- Minor fixes
+
 ## 1.7
 
 - Changed `staircase.delete(id)`, no need for type.
