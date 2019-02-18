@@ -22,5 +22,14 @@ const staircase = {
   },
   refresh(id) {
     new StaircaseCore().refresh(id);
+  },
+  join(base, item) {
+    return new StaircaseCore().join(base, item);
+  },
+  basename(id) {
+    return new StaircaseCore().basename(id);
+  },
+  dirname(id) {
+    return new StaircaseCore().dirname(id);
   }
 };

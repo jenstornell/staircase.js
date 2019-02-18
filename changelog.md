@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.9
+
+- Added `staircase.join()`
+- Added `staircase.basename()`
+- Added `staircase.dirname()`
+- Change icons from FontAwesome to Remixicon
+- Added `open` callback
+
 ## 1.8
 
 - Switched from static class to const.

@@ -1,6 +1,6 @@
 # staircase.js
 
-*Version 1.8*
+*Version 1.9* - [Changelog](changelog.md)
 
 Small ajax sidebar file tree browser without dependencies.
 
@@ -99,12 +99,16 @@ class StaircaseCallbacks {
   select(params) {
     console.log(params);
   }
+  open(params) {
+    console.log(params);
+  }
 }
 ```
 
 - `load` - Is only triggered when staircase is loaded
 - `toggle` - Is triggered every time when a folder is clicked
 - `select` - Is triggered every time you select a file or a folder
+- `open` - Is triggered when `staircase.open()` method is done
 
 ### Callback params
 
@@ -125,12 +129,16 @@ staircase.delete(id);
 staircase.open(id);
 staircase.close(id);
 
-staircase.rename(id, new_name);
+staircase.rename(id, name);
 
 staircase.select(id, callback = true);
 staircase.deselect(callback = true);
 
 staircase.refresh(id);
+
+staircase.dirname(id);
+staircase.basename(id);
+staircase.join(parent_id, name);
 ```
 
 ### Methods variables
@@ -138,7 +146,7 @@ staircase.refresh(id);
 - `parent_id` - The parent id of `my/parent/current` would be `my/parent`
 - `id` - The id is the path of the item, something like `my/folder/filename.txt`
 - `type` - The type is `file` or `folder`
-- `new_name` - A new name like `my_new_filename.txt`,
+- `name` - A new name like `my_new_filename.txt`,
 - `callback` - Optional value. In case you don't want to trigger the callback, set it to `false`.
 
 ### Methods explained
@@ -151,6 +159,9 @@ staircase.refresh(id);
 - `select` - Select an item
 - `deselect` - Deselect an item
 - `refresh` - Refresh a folder and all it's sub contents
+- `join` - Join two ids together like `my/id` + `text.md` and resolves slashes at the same time. The result is returned.
+- `dirname` - From an id, return the parent_id (inspired by PHP).
+- `basename` - From an id, return the filename (inspired by PHP).
 
 To see all possible params, visit [Mozilla - Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#Supplying_request_options)
 
@@ -164,9 +175,9 @@ You you want to help me improve staircase.js?
 - Enhancements and improvements that makes already existing things a bit better.
 - Pull requests or code in an issue. Both are equally fine.
 
-## Icons
+## Libraries used
 
-- Icons made by https://fontawesome.com
+- [Remixicon](https://remixicon.com/) - A special thanks to [xiaochunjimmy](https://github.com/xiaochunjimmy) for not only providing a beautiful icon pack with 24px icons, but also for making custom designed 18px icons for this project.
 
 ## Donate
 

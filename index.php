@@ -33,6 +33,10 @@
     select(params) {
       //console.log(params);
     }
+    open(params) {
+      console.log(params);
+      staircase.select(params.id + '/filder3.txd');
+    }
   }
 
   document.addEventListener("DOMContentLoaded", () => {

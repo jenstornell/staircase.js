@@ -69,7 +69,7 @@ stair-case {
 
       .sc-icon {
         padding: 0 .2rem;
-        background-size: 16px 18px;
+        background-size: 18px;
         background-position: center;
         background-repeat: no-repeat;
         width: 24px;
@@ -91,7 +91,7 @@ stair-case {
 
       &[data-sc-type="folder"] {
         > .sc-current > .sc-icon {
-          background-image: url('../../images/folder-solid.svg');
+          background-image: url('../../images/remixicon/folder-fill.svg');
 
           &:hover {
             background-color: #eee;
@@ -99,11 +99,11 @@ stair-case {
         }
 
         &[data-sc-state="open"] > .sc-current > .sc-icon {
-          background-image: url('../../images/folder-open-solid.svg');
+          background-image: url('../../images/remixicon/folder-open.svg');
         }
 
         &.sc-loading > .sc-current > .sc-icon {
-          background-image: url('../../images/sync-solid.svg');
+          background-image: url('../../images/remixicon/refresh-line.svg');
           animation: rotation 2s infinite linear;
 
           &:hover {
@@ -113,11 +113,17 @@ stair-case {
       }
       &[data-sc-type="file"] {
         .sc-icon {
-            background-image: url('../../images/file-regular.svg');
+          background-image: url('../../images/remixicon/file-text.svg');
         }
-
-        &[data-sc-name$=".txt"] {
-            //background: red;
+        &[data-sc-name$=".gif"],
+        &[data-sc-name$=".jpg"],
+        &[data-sc-name$=".jpeg"],
+        &[data-sc-name$=".png"],
+        &[data-sc-name$=".svg"],
+        &[data-sc-name$=".webp"] {
+          .sc-icon {
+            background-image: url('../../images/remixicon/image-line.svg');
+          }
         }
       }
     }

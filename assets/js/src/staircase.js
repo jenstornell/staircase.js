@@ -72,10 +72,17 @@ class StaircaseCore {
       } else {
         args.success = false;
       }
+
       if(args.id == '/') {
         this.callback('load', args);
       } else {
         this.callback('toggle', args);
+      }
+
+      if(this.goal_id === id && this.type == 'open') {
+        this.callback('open', args);
+        this.type = null;
+        this.goal_id = null;
       }
 
       if(args.success) {
@@ -177,6 +184,9 @@ class StaircaseCore {
 
   open(id) {
     this.options();
+    this.goal_id = id;
+    this.type = 'open';
+
     let ids = id.split('/');
     let append = '';
     let full_ids = [];

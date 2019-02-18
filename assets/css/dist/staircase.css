@@ -58,7 +58,7 @@ stair-case {
         border-radius: .2rem; }
       stair-case ul li .sc-icon {
         padding: 0 .2rem;
-        background-size: 16px 18px;
+        background-size: 18px;
         background-position: center;
         background-repeat: no-repeat;
         width: 24px;
@@ -73,18 +73,20 @@ stair-case {
         stair-case ul li .sc-name:hover {
           background-color: #eee; }
       stair-case ul li[data-sc-type="folder"] > .sc-current > .sc-icon {
-        background-image: url("../../images/folder-solid.svg"); }
+        background-image: url("../../images/remixicon/folder-fill.svg"); }
         stair-case ul li[data-sc-type="folder"] > .sc-current > .sc-icon:hover {
           background-color: #eee; }
       stair-case ul li[data-sc-type="folder"][data-sc-state="open"] > .sc-current > .sc-icon {
-        background-image: url("../../images/folder-open-solid.svg"); }
+        background-image: url("../../images/remixicon/folder-open.svg"); }
       stair-case ul li[data-sc-type="folder"].sc-loading > .sc-current > .sc-icon {
-        background-image: url("../../images/sync-solid.svg");
+        background-image: url("../../images/remixicon/refresh-line.svg");
         -webkit-animation: rotation 2s infinite linear;
                 animation: rotation 2s infinite linear; }
         stair-case ul li[data-sc-type="folder"].sc-loading > .sc-current > .sc-icon:hover {
           background-color: transparent; }
       stair-case ul li[data-sc-type="file"] .sc-icon {
-        background-image: url("../../images/file-regular.svg"); }
+        background-image: url("../../images/remixicon/file-text.svg"); }
+      stair-case ul li[data-sc-type="file"][data-sc-name$=".gif"] .sc-icon, stair-case ul li[data-sc-type="file"][data-sc-name$=".jpg"] .sc-icon, stair-case ul li[data-sc-type="file"][data-sc-name$=".jpeg"] .sc-icon, stair-case ul li[data-sc-type="file"][data-sc-name$=".png"] .sc-icon, stair-case ul li[data-sc-type="file"][data-sc-name$=".svg"] .sc-icon, stair-case ul li[data-sc-type="file"][data-sc-name$=".webp"] .sc-icon {
+        background-image: url("../../images/remixicon/image-line.svg"); }
   stair-case > ul {
     margin-left: 0; }
