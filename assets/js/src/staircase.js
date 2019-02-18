@@ -50,7 +50,7 @@ class StaircaseCore {
         this.type = null;
         this.goal_id = null;
       }
-      
+
       if(!rest.length) return;
       this.ajax(rest);
       return;
@@ -460,7 +460,7 @@ class StaircaseCore {
   // Remove active
   removeActive() {
     this.options();
-    let elements = this.$$(this.o.selector + ' li');
+    let elements = this.$$(this.o.selector + '[data-sc-active], ' + this.o.selector + ' [data-sc-active]');
 
     elements.forEach(function(element) {
         delete element.dataset.scActive;

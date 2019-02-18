@@ -11,15 +11,17 @@
 
 <stair-case data-staircase-path="example/ajax/ajax.php"></stair-case>
 
-<button class="add">Add to root</button>
-<button class="delete-root">Delete root</button>
-<button class="rename-root">Rename root</button>
-<button class="open">Open</button>
-<button class="close">Close</button>
-<button class="select-root">Select root</button>
-<button class="deselect-root">Deselect root</button>
-<button class="refresh-root">Refresh root</button>
-<button class="refresh-child">Refresh child</button>
+<div class="buttons">
+  <button class="add">Add to root</button>
+  <button class="delete-root">Delete root</button>
+  <button class="rename-root">Rename root</button>
+  <button class="open">Open</button>
+  <button class="close">Close</button>
+  <button class="select-root">Select root</button>
+  <button class="deselect-root">Deselect root</button>
+  <button class="refresh-root">Refresh root</button>
+  <button class="refresh-child">Refresh child</button>
+</div>
 
 <script src="assets/js/dist/staircase.js?t=<?= time(); ?>"></script>
 <script>
